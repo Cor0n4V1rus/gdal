@@ -15,7 +15,7 @@
 #include "ogr_api.h"
 #include <iostream>
 #include <OpenDriveMap.h>
-#include <pugixml/pugixml.hpp>
+#include <pugixml.hpp>
 #include <vector>
 
 struct RoadElements
