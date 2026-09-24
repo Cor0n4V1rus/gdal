@@ -19,6 +19,7 @@ using namespace std;
 bool OGRXODRDataSource::Open(const char *pszFilename, CSLConstList openOptions)
 {
     odr::OpenDriveMap xodr(pszFilename, false);
+    /*
     pugi::xml_parse_result parse_result = xodr.xml_parse_result;
     if (!parse_result ||
         parse_result.status != pugi::xml_parse_status::status_ok)
@@ -36,6 +37,7 @@ bool OGRXODRDataSource::Open(const char *pszFilename, CSLConstList openOptions)
                  "empty?");
         return false;
     }
+    */
 
     std::vector<odr::Road> roads = xodr.get_roads();
     if (roads.empty())
