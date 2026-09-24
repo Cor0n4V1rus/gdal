@@ -120,10 +120,28 @@ OGRFeature *OGRXODRLayerLane::GetNextRawFeature()
         feature->SetField(m_poFeatureDefn->GetFieldIndex("LaneID"), lane.id);
         feature->SetField(m_poFeatureDefn->GetFieldIndex("Type"),
                           lane.type.c_str());
-        feature->SetField(m_poFeatureDefn->GetFieldIndex("Predecessor"),
-                          lane.predecessor);
-        feature->SetField(m_poFeatureDefn->GetFieldIndex("Successor"),
-                          lane.successor);
+        
+        if ( lane.predecessor.has_value () )
+        {
+            feature->SetField(m_poFeatureDefn->GetFieldIndex("Predecessor"),
+                            lane.predecessor.value());
+        }
+        else
+        {
+            feature->SetField(m_poFeatureDefn->GetFieldIndex("Predecessor"),
+                              0);
+        }
+
+        if ( lane.successor.has_value () )
+        {
+            feature->SetField(m_poFeatureDefn->GetFieldIndex("Successor"),
+                            lane.successor.value());
+        }
+        else
+        {
+            feature->SetField(m_poFeatureDefn->GetFieldIndex("Successor"),
+                              0);
+        }
 
         ++m_laneIter;
         ++m_laneMeshIter;
